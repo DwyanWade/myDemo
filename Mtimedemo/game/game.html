@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>灰太狼和懒羊羊</title>
+	<script src="jquery-1.10.2.min.js"></script>
+	<script src="layer/layer.js"></script>
+	<style>
+		 body
+		 {
+		 	background-color:#228B22;
+		 }
+		 #imgid
+		{
+			width: 200px;
+			height: 200px;
+		}
+		#did
+		{
+			width: 200px;
+			height: 200px;
+			position: absolute;
+		}
+		 #imgid2
+		{
+			width: 150px;
+			height: 150px;
+		}
+		#yid
+		{
+			width: 150px;
+			height: 150px;
+			position: absolute;
+			right:0px;
+			top: 0px;
+			overflow: hidden;
+		}
+    #hint
+    {
+      position: absolute;
+      color: #fff;
+      left: 200px;
+      top:50px;
+    }  
+	</style>
+</head>
+<body>
+	<div id="did"><img src="a.png" id="imgid"></div>
+	<div id="yid"><img src="bb.png" id="imgid2"></div>
+  <div id="hint">
+      <span>分别用<b>W键、S键、A键、D键</b>控制灰太狼的移动吧!</span>
+      <br>
+      <span>抓住那只拿着扫把的懒羊羊!</span>
+  </div>
+</body>
+  <script>
+  
+  //原生js
+  		
+      $(function(){
+  			dobj=document.getElementById('did');
+  			yobj=document.getElementById('yid');
+  		  
+        xs=0;      //灰太狼x轴初始值
+  		  xv=8;     //步长 
+  		  ys=0;      //y轴初始值
+  		  yv=8;     //步长
+  		
+  		document.onkeydown=function(event){
+  			kc=event.keyCode;      //获取键盘码
+  			
+ 			
+  			switch(kc){
+  				case 87:     //上,W键值
+  				  ys-=yv;
+  				  dobj.style.top=ys+'px';
+  				  break; 
+  				case 83:      //下，S键值
+  					ys+=yv;
+  					dobj.style.top=ys+'px';
+  					break;
+  				case 65:      //左，A键值
+  					xs-=xv;
+  					dobj.style.left=xs+'px';
+  					break;
+  				case 68:      //右，D键值
+  					xs+=xv;
+  					dobj.style.left=xs+'px';
+  					break;
+  			}
+  			//当懒羊羊和灰太狼的距离少于50px时，游戏结束
+  			if(Math.abs(dobj.offsetTop-yobj.offsetTop)<50&&Math.abs(dobj.offsetLeft-yobj.offsetLeft)<50){
+  				yobj.style.display='none';
+  				layer.msg('懒洋洋被大灰狼吃掉啦!',{title:'哈哈',icon:5,anim:1,time:10000,});   //引入了layer弹框插件
+  		   }
+  		};
+  			//窗口可视的高
+  			screenHeight=document.documentElement.clientHeight;
+  			yimgHeight=150;
+  			diffHeight=screenHeight-yimgHeight;
+  			//窗口可视的宽
+  			screenWidth=document.documentElement.clientWidth;
+  			yimgWidth=150;
+  			diffWidth=screenWidth-yimgWidth;
+  			
+        //懒羊羊坐标初始值以及步长
+  			ys1=0;   
+  			yv1=30;
+  			xs1=0;
+  			xv1=30;
+      setInterval(function(){               //懒羊羊移动的定时器
+  			//y轴
+  			ys1+=yv1;
+  			if(ys1>=diffHeight){
+  				ys1=diffHeight;
+  				yv1=-yv1;
+  			}
+  			if(ys1<=0){
+  				yv1=-yv1;
+  			}
+  			yobj.style.top=ys1+'px';
+  			//x轴
+  			xs1+=xv1;
+  			if(xs1>=diffWidth){
+  				xs1=diffWidth;
+  				xv1=-xv1;
+  			}
+  			if(xs1<=0){
+  				xv1=-xv1;
+  			}
+  			yobj.style.left=xs1+'px';
+  		},100);
+  	})
+  	//hint提示消失
+    setTimeout(function(){
+      hint=document.getElementById('hint');
+      hint.style.display='none';
+    },5000);
+  </script>
+</html>

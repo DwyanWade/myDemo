@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>时光网</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<script type="js/jquerymin.js"></script>
+	<script type="js/bootstrap.js"></script>
+	<script src="js/jquery-1.10.2.min.js"></script>
+	<script src="layer/layer.js"></script>
+	<script src="js/Mtime.js"></script>
+	<style>
+        *{
+			margin: 0px;
+			padding: 0px;
+			font-family: 微软雅黑;
+        }
+        div
+        {
+			word-wrap: break-word;
+			overflow: hidden;
+		}
+        .bpimg
+        {
+        	width: 1200px;
+        	height: 312px;
+        	margin: 0 auto;
+        	position: relative;
+        }
+        #backgroundImage
+        {
+        	width: 100%;
+        	height: 312px;
+        }
+        .top
+        {
+        	width: 1200px;
+        	height: 550px;
+        	margin:0 auto;
+        	position: relative;
+        }
+        .directline
+        {
+			width: 100%;
+			height:60px;
+			background-color: #192332;
+			position: relative;
+        }
+        .shopping
+        {
+           	width: 63px;
+           	height: 60px;
+           	float: right;
+           	margin-right:20px;
+           	cursor: pointer;
+        }
+        .directtext1
+        {
+        	list-style-type: none;
+        	display: block;
+        	float: left;
+        	font-size: 15px;
+        	line-height: 60px;
+        	margin-left: 13px;
+        	margin-right: 15px;
+        	cursor: pointer; 
+        }
+
+       .reg
+       {
+       	float: right;
+       	margin-right: 20px;
+       } 
+        
+        a.dl
+        {
+        	text-decoration: none;
+        	color: #DCDCDC; 
+        }
+        a.dl:hover
+        {
+			color: #FFFFFF;
+        }
+		a.rg
+		{
+			text-decoration: none;
+        	color: #DCDCDC;
+		}
+		a.rg:hover
+		{
+			color: #FFFFFF;
+		}
+		.app
+		{
+			width: 180px;
+			height: 222px;
+			margin-left: 830px;
+			display: none;
+			cursor: pointer;
+			position: absolute;
+			z-index: 3;
+		}
+		.shoppingCar
+		{
+			width: 280px;
+			height: 226px;
+			border-top: solid #e83729 3px;
+			border-left: solid #D0D0D0 1px;
+			border-bottom: solid #D0D0D0 1px;
+			border-right: solid #D0D0D0 1px;
+			background-color: #ffffff;
+			text-align: center;
+			line-height: 226px;
+			cursor: pointer;
+			color: #7B7B7B; 
+			margin-left: 899px;
+			display: none;
+			position: absolute;
+			z-index: 1;
+		}
+		.loginbox
+		{
+			width: 280px;
+			height: 309px;
+			position: absolute;
+			border:solid #D0D0D0 1px;
+			margin-left: 838px;
+			background-color: white;
+			display: none;
+			z-index: 2;
+			
+		}
+		.title
+		{
+			text-align: center;
+			margin-top: 10px;
+			width: 100%
+			height:100px;
+		}
+		.title p:first-child
+		{
+			font-size: 23px;
+		}
+		.title p:last-child
+		{
+			color: #778899;
+		}
+		.input-group
+		{
+			margin-top:15px;
+		}
+		.glyphicon-ok-circle
+		{
+			color: #778899;
+			font-size: 15px;
+		}
+		#pwdreb
+		{
+			font-size: 17px;
+		}
+		.pwdtip
+		{
+			width: 100%
+			height:25px;
+			margin-top: 10px;
+			margin-left: 4px;
+		}
+		#forgetpwd
+		{
+			display: block;
+			text-decoration: none;
+			float: right;
+			color: black;
+			font-size: 17px;
+			margin-right:3px;
+		}
+		#forgetpwd:hover
+		{
+			color: blue;
+		}
+		.loginbtn
+		{
+			margin-top: 13px;
+		}
+		#vip
+		{
+			text-decoration: none;
+			color: black;
+		}
+		.btn-block
+		{
+			font-size: 17px;
+		}
+		.search-line
+		{
+			height: 90px;
+			width: 100%;
+			background-image: url(image/searchbgimg.jpg);
+			border-left: solid 1px #D3D3D3;
+			border-right: solid 1px #D3D3D3;
+		}
+		.searchbox
+		{
+			width: 470px;
+			height: 60px;
+			margin-left: 365px;
+			margin-top:15px;
+		}
+		.input-group-addon
+		{
+			cursor: pointer;
+		}
+		.search-down
+		{
+			width: 67px;
+			height: 183px;
+			margin-left: 365px;
+			margin-top: -11px;
+			position: absolute;
+			border:solid #D3D3D3 1px;
+			text-align: center;
+			display: none;
+			background-color: #ffffff;
+			z-index: 4;
+		}
+		.all-type
+		{
+			margin-top:10px;
+			cursor: pointer;
+			margin-bottom: 0px;
+		}
+		a.type{
+			text-decoration: none;
+			color:#000000;
+			display: block;
+		}
+		a.type:hover
+		{
+			color: #ffffff;
+			background-color: #337ab7;
+		}
+		.new
+		{
+			width: 30px;
+			height: 16px;
+			position: absolute;
+			border:solid red 1px;
+			text-align: center;
+			line-height: 16px;
+			background-color: #f94931;
+			color: #ffffff;
+			border-radius: 35%;
+			margin-top: -140px;
+			margin-left: 300px;
+			cursor: pointer;
+		}
+		.logo
+		{
+			width: 150px;
+			height: 60px;
+			position: absolute;
+			margin-left: 510px;
+			margin-top: -148px;
+			cursor: pointer;
+		}
+		#circle
+		{
+			width: 100%;
+			height: 360px;
+			position: relative;
+		}
+		.circle-box
+		{
+			position: absolute;
+		}
+		.control
+		{
+			position: absolute;
+			width: 40px;
+			height: 90px;
+			color: #000000;
+			background-color: #708090;
+			opacity: 0.5;
+			line-height: 90px;
+			font-size: 40px;
+			font-weight: bold;
+			text-align: center;
+			cursor: pointer;
+			float: left;
+			bottom:174px;
+		}
+		.right
+		{
+			left: 1160px;
+		}
+		.glyphicon-menu-left glyphicon-menu-right
+		{
+			color: #d8d8d7;
+		}
+		.circle-dot
+		{
+			position: absolute;
+			left: 555px;
+			top: 520px;
+		}
+		.sib
+		{
+			width: 10px;
+			height: 10px;
+			float: left;
+			background-color: #D3D3D3;
+			margin-right: 10px;
+			border-radius: 100%;
+			cursor: pointer;
+		}
+		.bg
+		{
+		    background-color: #267fd4;
+		}
+		.heat-title
+		{
+			height: 63px;
+			width: 1200px;
+			position:relative;
+			text-align: center;
+			margin:0 auto;
+		}
+		.heat-second
+		{
+			position: relative;
+			width: 1200px;
+			margin:0 auto;
+			margin-top: 10px;
+		}
+		.heat-second-list
+		{
+			margin-left: 350px;
+		}
+		a.heat-second-title
+		{
+			text-decoration: none;
+			color: #2F4F4F;
+			font-size: 15px;
+		}
+		a.heat-second-title:hover
+		{
+			color: #1E90FF;
+		}
+		.heat-list
+		{
+			display: block;
+			float: left;
+			margin-left:30px;
+		}
+		.title-space
+		{
+			color: #D3D3D3;
+		}
+		.heat-show
+		{
+			position: relative;
+			width: 1200px;
+			height: 535px;
+			margin:0 auto;
+		}
+		.heat-show-line
+		{
+			width: 100%;
+			height: 250px;
+			margin-top: 30px;
+		}
+		.heat-show-picture
+		{
+			float: left;
+			margin-right:15px;
+		}
+		.line2
+		{
+			margin-top: 5px;
+		}
+		.first-text
+		{
+			text-decoration: none;
+			color: black;
+			font-weight: 550;
+		}
+		a.first-text:hover
+		{
+			text-decoration: none;
+			color: #1E90FF;
+		}
+		.second-text
+		{
+			cursor: pointer;
+			color: #A9A9A9;
+		}
+		.playbtn
+		{
+			width: 47px;
+			height: 47px;
+			position: absolute;
+			border:solid 2px #ffffff;
+			border-radius:100%;
+			margin-top: 105px;
+			margin-left:10px;
+		}
+		.glyphicon-play
+		{
+			color: #ffffff;
+			text-align: center;
+			line-height: 47px;
+			font-size: 22px;
+		}
+		.over-more
+		{
+			
+			position: relative;
+			width: 1200px;
+			margin:0 auto;
+		}
+		#adjust
+		{
+			margin-bottom: 70px;
+			margin-left: 535px;
+		}
+		.registerbox
+		{
+			width: 400px;
+			height: 350px;
+			margin-left:50px;
+			display: none;
+		}
+		.register-info
+		{
+			width: 280px;
+			height: 40px;
+			margin-top: 30px;
+		}
+		#registerid
+		{
+			display: block;
+			margin-top: 30px;
+			margin-left: 150px;
+		}
+		.register-err
+		{
+			position: fixed;
+			color: red;
+			font-size: x-small;
+			margin-top: 5px;
+			margin-left: 70px;
+			display: none;
+		}
+		.back-top
+		{
+			width: 35px;
+			height: 40px;
+			background-color: #D3D3D3;
+			position: fixed;
+			right: 20px;
+			bottom: 25px;
+			text-align: center;
+			display: none;
+		}
+		.glyphicon-chevron-up
+		{
+			color:#1E90FF;
+			font-size: 30px;
+			line-height: 40px;
+
+		}
+	</style>  
+</head>
+<body>
+    <div class="bpimg"><img src="image/bodypic.png" id="backgroundImage"></div>
+      <div class="top">
+        <div class="directline">
+          <div class="shopping">
+           		<img src="image/shop.png">
+          </div>
+           <ul class="nav-bar">
+               <li class="directtext1"><a class="dl">首页</a></li>
+               <li class="directtext1"><a class="dl">购票</a></li>
+               <li class="directtext1"><a class="dl">正版商城</a></li>
+               <li class="directtext1"><a class="dl">新闻</a></li>
+               <li class="directtext1"><a class="dl">直播</a></li>
+               <li class="directtext1"><a class="dl">发现</a></li>
+               <li class="directtext1"><a class="dl">社区</a></li>
+               <li id="register" class="directtext1 reg"><a class="rg">注册</a></li>
+           	   <li id="login" class="directtext1 reg"><a class="rg">登录</a></li>
+           	   <li id="load" class="directtext1 reg"><a class="rg"><span class="glyphicon glyphicon-phone">App下载</span></a>
+           </ul> 
+        </div>
+        <div class="app">
+        	<img src="image/app.jpg">
+        </div>
+        <div class="shoppingCar">您的购物车是空的，赶紧选购哦。</div>
+        <div class="loginbox">
+        	<div class="title">
+        	    <p>为爱电影的人</p>
+        	    <p>For people who love movies</p>
+        	</div>
+            <div class="input-group">
+  				<span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-user"></span></span>
+  				<input type="text" class="form-control" id="input-userName" placeholder="非表单，只是样式" aria-describedby="sizing-addon2">
+			</div>
+			<div class="input-group">
+  				<span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-lock"></span></span>
+  				<input type="password" class="form-control" id="input-pwd" placeholder="非表单，只是样式" aria-describedby="sizing-addon2">
+			</div>
+			<div class="pwdtip">
+				<span class="glyphicon glyphicon-ok-circle"></span>
+				<span id="pwdreb">记住我</span>
+				<a href="javascript:" id="forgetpwd">忘记密码</a>
+			</div>
+			<div class="loginbtn">
+				<button type="button" class="btn btn-primary btn-sm btn-block">登录</button>
+				<button type="button" class="btn btn-default btn-sm btn-block"><a href="go.register" id="vip">成为会员</a></button>
+			</div>
+        </div>
+          <div class="search-line">
+			  <div class="searchbox">
+			  	<div class="input-group">
+  					<span class="input-group-addon" id="showtype">全部<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></span>
+  					<input type="text" class="form-control" id="searchinput" aria-label="Amount (to the nearest dollar)" placeholder="导航栏只有注册登录可点击，其它的只是样式">
+ 					<span class="input-group-addon" id="searchbtn"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+				</div>
+			  </div>
+			  <div class="search-down">
+			      <ul class="allmovies">
+			        <li class="all-type"><a href="javascript:" class="type">全部</a></li>
+			        <li class="all-type"><a href="javascript:" class="type">电影</a></li>
+			        <li class="all-type"><a href="javascript:" class="type">影人</a></li>
+			        <li class="all-type"><a href="javascript:" class="type">影院</a></li>
+			        <li class="all-type"><a href="javascript:" class="type">商城</a></li>
+			        <li class="all-type"><a href="javascript:" class="type">新闻</a></li>
+			      </ul>
+			  </div>
+          </div>
+          <div class="new">new</div><div class="logo"><img src="image/logo.png"></div>
+          <div id="circle">
+          		<div class="circle-box">
+          			<img src="image/cir1.jpg" class="circle-img">
+          		</div>
+          		<div class="circle-box">
+          			<img src="image/cir2.jpg" class="circle-img">
+          		</div>
+          		<div class="circle-box">
+          			<img src="image/cir3.jpg" class="circle-img">
+          		</div>
+          		<div class="circle-box">
+          			<img src="image/cir4.jpg" class="circle-img">
+          		</div>
+          		<div class="circle-box">
+          			<img src="image/cir5.jpg" class="circle-img">
+          		</div>        		
+          </div>
+          <div class="circle-dot">
+            <div class="sib bg"></div>
+        	<div class="sib"></div>
+        	<div class="sib"></div>
+        	<div class="sib"></div>
+        	<div class="sib"></div>
+    	 </div>
+    	 <div class="control left">
+    	 	<span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+    	 </div>
+    	 <div class="control right">
+    	 	<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+    	 </div>
+      </div> 
+      <div class="heat-title">
+      	<h2>今日热点</h2>
+      </div>
+      <div class="heat-second">
+          <ul class="heat-second-list">
+              <li class="heat-list"><a href="javascript:" class="heat-second-title">时光对话&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="title-space">|</span></a></li>            
+              <li class="heat-list"><a href="javascript:" class="heat-second-title">产业聚焦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="title-space">|</span></a></li>
+              <li class="heat-list"><a href="javascript:" class="heat-second-title">电影情报&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="title-space">|</span></a></li>
+              <li class="heat-list"><a href="javascript:" class="heat-second-title">全球拾趣</a></li>
+          </ul>
+      </div>
+      <div class="heat-show">
+          <div class="heat-show-line">
+              <div class="heat-show-picture">
+              	  <a href="javascript:"><div class="playbtn">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-play" aria-hidden="true"></span></div></a>
+                  <a href="javascript:"><img src="image/heat/heat1.jpg" title="直击第93届奥斯卡奖"></a>
+                  <h4><a href="javascript:" class="first-text">吴宇森警匪片《追捕》改档9.30</a></h4>
+                  <p class="second-text">硝烟弥漫 国庆档或现8部国片混战局面</p>
+              </div>
+              <div class="heat-show-picture">
+              	  <a href="javascript:"><div class="playbtn">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-play" aria-hidden="true"></span></div></a>
+                  <a href="javascript:"><img src="image/heat/heat2.jpg" title="直击第93届奥斯卡奖"></a>
+                  <h4><a href="javascript:" class="first-text">吴宇森警匪片《追捕》改档9.30</a></h4>
+                  <p class="second-text">硝烟弥漫 国庆档或现8部国片混战局面</p>
+              </div>
+              <div class="heat-show-picture">
+              	  <a href="javascript:"><div class="playbtn">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-play" aria-hidden="true"></span></div></a>
+                  <a href="javascript:"><img src="image/heat/heat3.jpg" title="直击第93届奥斯卡奖"></a>
+                  <h4><a href="javascript:" class="first-text">吴宇森警匪片《追捕》改档9.30</a></h4>
+                  <p class="second-text">硝烟弥漫 国庆档或现8部国片混战局面</p>
+              </div>
+              <div class="heat-show-picture">
+                  <a href="javascript:"><div class="playbtn">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-play" aria-hidden="true"></span></div></a>
+                  <a href="javascript:"><img src="image/heat/heat4.jpg" title="直击第93届奥斯卡奖"></a>
+                  <h4><a href="javascript:" class="first-text">吴宇森警匪片《追捕》改档9.30</a></h4>
+                  <p class="second-text">硝烟弥漫 国庆档或现8部国片混战局面</p>
+              </div>
+          </div>
+          <div class="heat-show-line line2">
+              <div class="heat-show-picture">
+                  <a href="javascript:"><img src="image/heat/heat5.jpg" title="直击第93届奥斯卡奖"></a>
+                  <h4><a href="javascript:" class="first-text">吴宇森警匪片《追捕》改档9.30</a></h4>
+                  <p class="second-text">硝烟弥漫 国庆档或现8部国片混战局面</p>
+              </div>
+              <div class="heat-show-picture">
+                  <a href="javascript:"><img src="image/heat/heat6.jpg" title="直击第93届奥斯卡奖"></a>
+                  <h4><a href="javascript:" class="first-text">吴宇森警匪片《追捕》改档9.30</a></h4>
+                  <p class="second-text">硝烟弥漫 国庆档或现8部国片混战局面</p>
+              </div>
+              <div class="heat-show-picture">
+                  <a href="javascript:"><img src="image/heat/heat7.jpg" title="直击第93届奥斯卡奖"></a>
+                  <h4><a href="javascript:" class="first-text">吴宇森警匪片《追捕》改档9.30</a></h4>
+                  <p class="second-text">硝烟弥漫 国庆档或现8部国片混战局面</p>
+              </div>
+              <div class="heat-show-picture">
+                  <a href="javascript:"><img src="image/heat/heat4.jpg"></a>
+              </div>
+          </div>
+      </div>
+      <div class="over-more">
+          <p id="adjust"><a href="game/game.html" id="more-check" class="btn btn-primary btn-lg active" role="button">点我玩小游戏</a></p>
+      </div>
+      <div class="registerbox">
+        <form action="go-python" id="registerform">
+          <div class="register-form">
+            <label>用户名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <input type="text" class="register-info" name="reg-userName" placeholder="长度为3~10位字母或数字组合">
+            <p class="register-err">请输入有效用户名</p>
+          </div>
+          <div class="register-form">
+            <label>手机号&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <input type="text" class="register-info" name="reg-tele" placeholder="请输入常用手机号">
+            <p class="register-err">请输入有效手机号</p>
+          </div>
+          <div class="register-form">
+            <label>密&nbsp;&nbsp;&nbsp;码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <input type="password" class="register-info" name="reg-pwd" placeholder="密码(6~20字母、数字组合)">
+            <p class="register-err">密码格式不正确</p>
+          </div>
+          <div class="register-form">
+            <label>确认密码&nbsp;</label>
+            <input type="password" class="register-info" name="re-reg-pwd" placeholder="确认密码">
+            <p class="register-err">两次密码不一致!</p>
+          </div>
+          <button type="submit" id="registerid" class="btn btn-primary">&nbsp;&nbsp;&nbsp;注册&nbsp;&nbsp;&nbsp;</button>
+        </form>
+      </div>
+      <div class="back-top"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></div>
+</body>
+</html>
